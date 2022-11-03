@@ -8,3 +8,10 @@
 * eslint-plugin-react
 * eslint-plugin-react-hooks
 * eslint-plugin-import
+
+### npm にlintコマンドとformatコマンドを追加する
+
+|  コマンド  |  説明  |
+| ---- | ---- |
+|  npm run lint  |  リントを行い、ソースコードの問題点を列挙する。  |
+|  npm run format  |  ソースコードの問題を自動でフォーマットを行う。  |

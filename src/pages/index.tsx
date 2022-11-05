@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import Form from '../samples/form'
 import FormController from '../samples/formController'
 import MyLoader from '../samples/ReactContentLoader'
+import { HomeIcons } from '../samples/MUIIcons'
 
 export default function Home() {
   return (
@@ -39,6 +40,11 @@ export default function Home() {
           <a href="#" className={styles.card}>
             <h2>Content Loader &rarr;</h2>
             <MyLoader />
+          </a>
+
+          <a href="#" className={styles.card}>
+            <h2>Mui icons &rarr;</h2>
+            <HomeIcons />
           </a>
 
           <a href="https://nextjs.org/docs" className={styles.card}>

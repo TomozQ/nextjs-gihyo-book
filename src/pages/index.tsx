@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Form from './form'
+import Form from '../samples/form'
+import FormController from '../samples/formController'
 
 export default function Home() {
   return (
@@ -27,6 +28,11 @@ export default function Home() {
           <a href="#" className={styles.card}>
             <h2>React-Hook-Form &rarr;</h2>
             <Form />
+          </a>
+
+          <a href="#" className={styles.card}>
+            <h2>React-Hook-Form &rarr;</h2>
+            <FormController />
           </a>
 
           <a href="https://nextjs.org/docs" className={styles.card}>

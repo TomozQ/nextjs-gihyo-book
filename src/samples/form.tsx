@@ -7,6 +7,12 @@ type MyFormData = {
 }
 
 export default function Form() {
+  /**
+   *  useFormフックはregister関数、handlerSubmit関数、errorsオブジェクトを返す
+   *  register関数 ... フォームの<input>,<select>にフックを登録して、状態を管理下における
+   *  handleSubmit関数 ... フォームのonSubmitのイベントハンドラを登録するために使用する。
+   *  errorsオブジェクト ... どの要素にバリデーションエラーが発生しているかを検知する。
+   */
   const { register, handleSubmit, formState: { errors }, } = useForm<MyFormData>()
   const onSubmit: SubmitHandler<MyFormData> = (data) => {
     console.log(data)

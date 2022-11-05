@@ -55,7 +55,7 @@ Object.defineProperty(NextImage, 'default', {
   ),
 })
 
-Object.defineProperty(NextImage, '__esModule', {
+Object.defineProperty(NextImage, '__esModuleInterop', {
   configurable: true,
   value: true,
 })

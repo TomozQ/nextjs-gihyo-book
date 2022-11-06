@@ -20,3 +20,14 @@ APIへの問い合わせを管理する
 |  getAllProducts, addProduct  |  プロダクトAPI  |  /products  |
 |  getProduct  |  プロダクトAPI  |  /products/{id}  |
 |  purchase  |  購入API  |  /purchases  |
+
+### 開発観光のためのAPIリクエストプロキシ
+
+* __CORS__ ... オリジン間リソース共有。(Cross-Origin-Resource Sharing)<br>あるオリジンのWebアプリケーションに対して、別のオリジンのサーバーへのアクセスをHTTPリクエストによって許可できる仕組み。
+
+* Next.jsのRewrites機能 ... 指定したURLパターンを内部で別のURLに変換する機能
+
+CORSでのCookie送信を避けるために、Next.jsのRewrites機能を使用してプロキシの設定をする。<br>
+Next.jsのエンドポイントにリクエストを送信するとjson-serverのエンドポイントに変換されてリクエストが送信される。
+Next.jsのRewrites機能を利用するには __next.config.js__ を編集する。<br>
+例えば、 __http://nextjsのホスト/api/proxy/signin__ とリクエストを送った場合には __http://json-serverのホスト/signin__ と変換される。

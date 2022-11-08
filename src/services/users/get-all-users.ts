@@ -1,5 +1,5 @@
-import type { ApiContext, User } from "types";
-import { fetcher } from "utils";
+import type { ApiContext, User } from 'types'
+import { fetcher } from 'utils'
 
 /**
  * ユーザーAPI（一覧取得）
@@ -7,7 +7,7 @@ import { fetcher } from "utils";
  * @returns ユーザー一覧
  */
 const getAllUsers = async (context: ApiContext): Promise<User[]> => {
-  return await fetcher (`${context.apiRootUrl.replace(/\/$/g, '')}/users`,{
+  return await fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/users`, {
     headers: {
       Origin: '*',
       Accept: 'application/json',
@@ -16,4 +16,4 @@ const getAllUsers = async (context: ApiContext): Promise<User[]> => {
   })
 }
 
-export default getAllUsers;
+export default getAllUsers

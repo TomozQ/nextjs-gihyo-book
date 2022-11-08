@@ -13,24 +13,31 @@ export default function Form() {
    *  handleSubmit関数 ... フォームのonSubmitのイベントハンドラを登録するために使用する。
    *  errorsオブジェクト ... どの要素にバリデーションエラーが発生しているかを検知する。
    */
-  const { register, handleSubmit, formState: { errors }, } = useForm<MyFormData>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<MyFormData>()
   const onSubmit: SubmitHandler<MyFormData> = (data) => {
     console.log(data)
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register('firstName', {required: true})} placeholder='名前' />
+      <input
+        {...register('firstName', { required: true })}
+        placeholder="名前"
+      />
       {errors.firstName && <div>名前を入力してください</div>}
-      <input {...register('lastName', {required: true})} placeholder='苗字' />
+      <input {...register('lastName', { required: true })} placeholder="苗字" />
       {errors.lastName && <div>苗字を入力してください</div>}
-      <select {...register('category', {required: true})}>
-        <option value=''>選択...</option>
-        <option value='A'>カテゴリA</option>
-        <option value='B'>カテゴリB</option>
+      <select {...register('category', { required: true })}>
+        <option value="">選択...</option>
+        <option value="A">カテゴリA</option>
+        <option value="B">カテゴリB</option>
       </select>
       {errors.category && <div>カテゴリを選択したください</div>}
-      <input type='submit' />
+      <input type="submit" />
     </form>
   )
 }

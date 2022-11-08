@@ -1,5 +1,5 @@
-import type { ApiContext, Product } from "types";
-import { fetcher } from "utils";
+import type { ApiContext, Product } from 'types'
+import { fetcher } from 'utils'
 
 export type AddProductsParams = {
   /**
@@ -24,9 +24,9 @@ const addProduct = async (
       Origin: '*',
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      credentials: 'include'
+      credentials: 'include',
     },
-    body: JSON.stringify(product)
+    body: JSON.stringify(product),
   })
 }
 

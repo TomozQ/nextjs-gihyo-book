@@ -1,5 +1,5 @@
-import type { ApiContext } from "types";
-import { fetcher } from "utils";
+import type { ApiContext } from 'types'
+import { fetcher } from 'utils'
 
 export type PurchaseParams = {
   /**
@@ -17,14 +17,14 @@ export type PurchaseParams = {
 const purchase = async (
   context: ApiContext,
   params: PurchaseParams,
-): Promise<{message: string}> => {
+): Promise<{ message: string }> => {
   return await fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}/purchases`, {
     method: 'POST',
     headers: {
       Origin: '*',
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      credentials: 'include'
+      credentials: 'include',
     },
     body: JSON.stringify(params),
   })

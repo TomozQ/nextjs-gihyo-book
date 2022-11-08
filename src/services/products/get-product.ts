@@ -1,5 +1,5 @@
-import type { ApiContext, Product } from "types";
-import { fetcher } from "utils";
+import type { ApiContext, Product } from 'types'
+import { fetcher } from 'utils'
 
 export type GetProductParams = {
   /**
@@ -16,18 +16,15 @@ export type GetProductParams = {
  */
 const getProduct = async (
   context: ApiContext,
-  { id }: GetProductParams
+  { id }: GetProductParams,
 ): Promise<Product> => {
-  return await fetcher (
-    `${context.apiRootUrl.replace(/\/$/g, '')}`,
-    {
-      headers: {
-        Origin: '*',
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }
-    }
-  )
+  return await fetcher(`${context.apiRootUrl.replace(/\/$/g, '')}`, {
+    headers: {
+      Origin: '*',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
 }
 
 export default getProduct

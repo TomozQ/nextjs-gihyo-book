@@ -1,5 +1,5 @@
-import useSWR from "swr";
-import type { ApiContext, Category, Condition, Product } from "types";
+import useSWR from 'swr'
+import type { ApiContext, Category, Condition, Product } from 'types'
 
 export type UseSearchProps = {
   /**
@@ -56,8 +56,8 @@ const useSearch = (
     userId,
     conditions,
     initial,
-    sort='id',
-    order='desc'
+    sort = 'id',
+    order = 'desc',
   }: UseSearchProps = {},
 ): UseSearch => {
   const path = `${context.apiRootUrl.replace(/\/$/g, '')}/products`
@@ -69,16 +69,16 @@ const useSearch = (
     conditions.forEach((condition) => params.append('condition', condition))
   sort && params.append('_sort', sort)
   order && params.append('_order', order)
-  
+
   const query = params.toString()
   const { data, error } = useSWR<Product[]>(
-    query.length > 0 ? `${path}?${query}` : path, 
+    query.length > 0 ? `${path}?${query}` : path,
   )
 
   return {
     products: data ?? initial ?? [],
     isLoading: !error && !data,
-    isError: !!error
+    isError: !!error,
   }
 }
 

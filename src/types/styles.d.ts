@@ -2,7 +2,7 @@
 /**
  * Responsiveプロパティ
  */
- export type ResponsiveProp<T> = {
+export type ResponsiveProp<T> = {
   base?: T
   sm?: T
   md?: T

@@ -36,7 +36,7 @@ import { theme } from 'themes'
 //    * toPropValue('flex-direction', 'column')の場合は
 //    * >> flex-direction: column;
 //    * の文字列が返ってくる。
-//    * 
+//    *
 //    * toPropValue('flex-direction', {base: 'column', sm: 'row'})の場合は
 //    * flex-direction: column;
 //    * @media screen and (min-width: 640px) {
@@ -61,7 +61,7 @@ import { theme } from 'themes'
 //   return (
 //     <>
 //       <Container flexDirection="column" marginBottom="8px">
-//         {/* 
+//         {/*
 //           - 常に縦並びになる
 //           - 下に8px(テーマ設定した2つ目の要素)のマージン
 //         */}
@@ -69,7 +69,7 @@ import { theme } from 'themes'
 //         <div>Second Item</div>
 //       </Container>
 //       <Container flexDirection={{base: 'column', sm: 'row'}} marginBottom={1}>
-//         {/* 
+//         {/*
 //           - 640px以上だと横並び、それ以外だと縦並び
 //           - 下に8px(テーマ設定した2つ目の要素)のマージン
 //             const space: string[] = ['0px', '8px', '16px', '32px', '64px']
@@ -78,7 +78,7 @@ import { theme } from 'themes'
 //         <div>Second Item</div>
 //       </Container>
 //       <Container flexDirection={{base: 'column', sm: 'row'}} marginBottom={{base: 1, sm: 2}}>
-//         {/* 
+//         {/*
 //           - 640px以上だと横並び、それ以外だと縦並び
 //           - 640px以上だと下に16pxのマージン
 //             それ以外は8pxマージン

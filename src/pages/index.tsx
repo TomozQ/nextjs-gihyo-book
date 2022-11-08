@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import { HomeIcons } from '../samples/MUIIcons'
+import MyLoader from '../samples/ReactContentLoader'
 import Form from '../samples/form'
 import FormController from '../samples/formController'
-import MyLoader from '../samples/ReactContentLoader'
-import { HomeIcons } from '../samples/MUIIcons'
+import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
@@ -26,7 +26,6 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-
           <a href="#" className={styles.card}>
             <h2>React-Hook-Form &rarr;</h2>
             <Form />

@@ -55,7 +55,16 @@ Object.defineProperty(NextImage, 'default', {
   ),
 })
 
-Object.defineProperty(NextImage, '__esModuleInterop', {
+// Object.defineProperty(NextImage, '__esModuleInterop', {
+//   configurable: true,
+//   value: true,
+// })
+
+Object.defineProperty(NextImage, 'default', {
   configurable: true,
-  value: true,
+  value: (props) => typeof props.src === 'string' ? (
+    <OriginalNextImage {...props} unoptimized blurDataURL={props.src} />
+  ) : (
+    <OriginalNextImage {...props} unoptimized />
+  ),
 })

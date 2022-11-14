@@ -1,7 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect, } from 'react'
 import styled from 'styled-components'
 import { CloudUploadIcon } from 'components/atoms/IconButton'
-import { file } from '@babel/types'
 
 // eslint-disable-next-line @typescript-eslint-/no-explicit-any
 const isDragEvt = (value: any): value is React.DragEvent => {
@@ -278,14 +277,40 @@ export default Dropzone
  * 
  * const example = (foo: unknown) => {
  *  if(isString(foo)){
- *    console.log(foo.length)   // -> Error fooはまだunkownとして推論される。
+ *    console.log(foo.length)   // -> fooはまstringとして推論される。
  *  }
  * }
  * --------------------------------
  * ・!!
+ * 二重論理否定
+ * 否定の否定なので元に戻って意味がないように見えるが、論理否定演算子には任意の型をBoolean型に変換するという副作用があるため、評価値は必ずBoolean型となる。
+ * つまり
+ * Boolean型への型変換
+ * 今回の場合は
+ * const isDragEvt = (value: any): value is React.DragEvent => {
+ *  return !!value.dataTransfer
+ * }
+ * なので
+ * value.dataTransferがあれば（trueならば）value をReact.DragEvent型として推論させるという関数になっている。
  * --------------------------------
  * ・e.dataTransfer
+ * ドラッグアンドドロップ操作中にドラッグされているデータを保持するために使用される。
+ * 
+ * ・e.dataTransfer.files
+ * ドラッグ操作中のファイルのリスト
  * --------------------------------
  * ・concat
+ * 配列の結合
+ * const arr1 = ['a', 'b', 'c']
+ * const arr2 = ['d', 'e', 'f']
+ * const arr3 = arr1.concat(arr2)
+ * console.log(arr3) // ['a', 'b', 'c', 'd', 'e', 'f']
+ * 今回の場合は
+ * const files = value.concat(
+ *   getFilesFromEvent(e).filter((f) => 
+ *     acceptedFileTypes.includes(f.type as FileType)
+ *   )
+ * )
+ * イベントによって別で用意されている取得方法（DragEventかChangeEvent）で取得した「dataTransfer.files or target.files」をvalue(配列)と結合する。
  * --------------------------------
  */

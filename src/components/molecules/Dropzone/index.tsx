@@ -243,6 +243,7 @@ export default Dropzone
 
 /**
  * 調べること
+ * --------------------------------
  * ・is
  * TypeScriptの型推論を補強するuser-defined type guard(ユーザー定義型ガード)
  * unknown型、any型、Union型の型の絞り込みができる。

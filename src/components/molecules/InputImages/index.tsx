@@ -1,9 +1,9 @@
-import React, {useCallback, useMemo} from 'react'
+import React, { useCallback, useMemo } from 'react'
 import styled from 'styled-components'
-import Box from 'components/leyout/Box'
-import Flex from 'components/leyout/Flex'
-import Dropzone from '../Dropzone'
-import ImagePreview from '../ImagePreview'
+import Box from 'components/layout/Box'
+import Flex from 'components/layout/Flex'
+import Dropzone from 'components/molecules/Dropzone'
+import ImagePreview from 'components/molecules/ImagePreview'
 
 const InputImagesContainer = styled(Flex)`
   & > *:not(:first-child) {
@@ -38,19 +38,17 @@ const InputImages = (props: InputImagesProps) => {
     maximumNumber,
     name,
     hasError,
-    width='100%',
-    height='260px',
+    width = '100%',
+    height = '260px',
     onChange,
   } = props
-
   const files = useMemo(
-    () => 
+    () =>
       images
         .filter((img: FileData) => img.file)
         .map((img: FileData) => img.file as File),
-      [images]
+    [images],
   )
-
   const isDropzoneDisplay =
     !maximumNumber || images.length < maximumNumber ? 'block' : 'none'
 
@@ -60,20 +58,21 @@ const InputImages = (props: InputImagesProps) => {
       const newImages = images.filter((img: FileData) => img.src !== src)
 
       if (image) {
-        if(image.file && image.src) {
+        if (image.file && image.src) {
           URL.revokeObjectURL(image.src)
           delete image.src
         }
-      }
 
-      onChange && onChange(newImages)
+        onChange && onChange(newImages)
+      }
     },
-    [images, onChange]
+    [images, onChange],
   )
 
   const onDrop = useCallback(
     (files: File[]) => {
       const newImages = []
+
       for (const file of files) {
         const img = images.find((img: FileData) => img.file === file)
 
@@ -84,16 +83,18 @@ const InputImages = (props: InputImagesProps) => {
           newImages.push({ file, src: URL.createObjectURL(file) })
         }
       }
+
+      onChange && onChange(newImages)
     },
-    [images, maximumNumber, onChange]
+    [images, maximumNumber, onChange],
   )
 
   return (
-    <InputImagesContainer flexDirection='column'>
-      {images && 
+    <InputImagesContainer flexDirection="column">
+      {images &&
         images.map((img, index) => {
           return (
-            <ImagePreview 
+            <ImagePreview
               alt={img.id}
               key={index}
               src={img.src}
@@ -101,15 +102,14 @@ const InputImages = (props: InputImagesProps) => {
               onRemove={onRemove}
             />
           )
-        })
-      }
+        })}
       <Box style={{ display: isDropzoneDisplay }}>
-        <Dropzone 
+        <Dropzone
           acceptedFileTypes={[
             'image/gif',
             'image/jpeg',
             'image/jpg',
-            'image/png'
+            'image/png',
           ]}
           name={name}
           height={height}

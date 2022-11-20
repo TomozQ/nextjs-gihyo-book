@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback, useEffect } from "react";
 import styled from 'styled-components'
-import Flex from "components/leyout/Flex";
+import Flex from "components/layout/Flex";
 import Text from "components/atoms/Text";
 import {
   CheckBoxOutlineBlankIcon,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react'
 import styled from 'styled-components'
 import Text from 'components/atoms/Text'
-import Flex from 'components/leyout/Flex'
+import Flex from 'components/layout/Flex'
 
 const DropdownRoot = styled.div`
   position: relative;

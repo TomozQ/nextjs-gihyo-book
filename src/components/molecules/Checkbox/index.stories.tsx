@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import CheckBox from './index'
-import Box from 'components/leyout/Box'
+import Box from 'components/layout/Box'
 import { Checkbox } from '@mui/material'
 
 export default {

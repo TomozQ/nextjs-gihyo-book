@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Flex from 'components/leyout/Flex'
+import Flex from 'components/layout/Flex'
 import { CloseIcon } from 'components/atoms/IconButton'
 import Text from 'components/atoms/Text'
 import React from 'react'

@@ -204,3 +204,20 @@ const ProductForm = ({onProductSave}: ProductFormProps) => {
 }
 
 export default ProductForm
+
+/**
+ * 調べること
+ * ・React Hook Form
+ * useFormフックを使用
+ * useFormフックは register関数、handleSubmit関数、errorsオブジェクトを返す
+ * 対象がinputのrefを公開していない場合でもControllerコンポーネントを使用することでバリデーションが可能
+ * Controllerコンポーネントを用いて、renderのpropsに外部・自作のUIコンポーネントを返すように指定する。
+ * そこでonChangeとvalueを外部・自作UIコンポーネントに渡すと設定は完了
+ * 
+ * const {
+    register,               -> register関数: フォームの<input>,<select>にフックを登録して、状態を管理下における
+    handleSubmit,           -> handleSubmit関数: フォームのonSubmitのイベントハンドラを登録するために使用する
+    control,                -> useForm()から提供される外部・自作UIコンポーネント制御用の関数？
+    formState: { errors },  -> errrosオブジェクト: どの要素にバリデーションエラーが発生しているかを検知する
+  } = useForm<ProductFormData>()
+ */

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Flex from "components/leyout/Flex"
+import Flex from "components/layout/Flex"
 
 const BreadcrumbRoot = styled(Flex)`
   list-style: none;

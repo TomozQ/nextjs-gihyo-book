@@ -1,4 +1,4 @@
-import Grid from "components/leyout/Grid";
+import Grid from "components/layout/Grid";
 
 interface ProductCardListProps {
   /**

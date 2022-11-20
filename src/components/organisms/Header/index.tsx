@@ -10,8 +10,8 @@ import {
 import ShapeImage from "components/atoms/ShapeImage";
 import Spinner from "components/atoms/Spinner";
 import Text from "components/atoms/Text";
-import Box from "components/leyout/Box";
-import Flex from "components/leyout/Flex";
+import Box from "components/layout/Box";
+import Flex from "components/layout/Flex";
 import BadgeIconButton from "components/molecules/BadgeIconButton";
 import { useAuthContext } from 'contexts/AuthContext'
 import { useShoppingCartContext } from 'contexts/ShoppingCartContext'

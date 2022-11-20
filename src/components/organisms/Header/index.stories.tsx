@@ -17,7 +17,7 @@ export const Login = () => {
     username: 'dummy',
     displayName: 'Taketo Yoshida',
     email: 'test@example.com',
-    profileImageUrl: '/images/sample/1.jpg',
+    profileImageUrl: '/images/sample/1.jpeg',
     description: '',
   }
 

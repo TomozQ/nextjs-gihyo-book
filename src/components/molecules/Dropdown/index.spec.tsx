@@ -1,4 +1,10 @@
-import { render, screen, act, fireEvent, RenderResult,} from '@testing-library/react'
+import {
+  render,
+  screen,
+  act,
+  fireEvent,
+  RenderResult,
+} from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import Dropdown from '.'
 import { theme } from 'themes'
@@ -12,14 +18,14 @@ describe('Dropdown', () => {
     handleChange = jest.fn()
     renderResult = render(
       <ThemeProvider theme={theme}>
-        <Dropdown 
+        <Dropdown
           options={[
-            {value: 'used', label: '中古'},
-            {value: 'new', label: '新品'},
+            { value: 'used', label: '中古' },
+            { value: 'new', label: '新品' },
           ]}
           onChange={handleChange}
         />
-      </ThemeProvider>
+      </ThemeProvider>,
     )
   })
 
@@ -37,7 +43,7 @@ describe('Dropdown', () => {
 
     // ドロップダウンの選択肢のビューから選択
     const elements = await screen.getAllByTestId('dropdown-option')
-    elements && fireEvent.click(elements[0])    // 最初のオプションをクリック
+    elements && fireEvent.click(elements[0]) // 最初のオプションをクリック
 
     expect(handleChange).toHaveBeenCalledTimes(1)
   })

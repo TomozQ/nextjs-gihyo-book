@@ -9,10 +9,10 @@ describe('Dropzone', () => {
 
   beforeEach(() => {
     handleDrop = jest.fn()
-    renderResult = render (
+    renderResult = render(
       <ThemeProvider theme={theme}>
-        <Dropzone onDrop={handleDrop}/>
-      </ThemeProvider>
+        <Dropzone onDrop={handleDrop} />
+      </ThemeProvider>,
     )
   })
 
@@ -32,5 +32,4 @@ describe('Dropzone', () => {
     // ファイルが入力されたか確認
     expect(handleDrop).toHaveBeenCalledTimes(1)
   })
-
 })

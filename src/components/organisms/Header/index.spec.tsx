@@ -1,4 +1,4 @@
-import {render, screen, RenderResult} from '@testing-library/react'
+import { render, screen, RenderResult } from '@testing-library/react'
 import { ThemeProvider } from 'styled-components'
 import Header from '.'
 import { AuthContextProvider } from 'contexts/AuthContext'
@@ -10,7 +10,7 @@ jest.mock('contexts/ShoppingCartContext')
 // eslint-disable-next-line import/order
 import { useShoppingCartContext } from 'contexts/ShoppingCartContext'
 // オリジナルのShoppingCartContextProviderを取得
-const {ShoppingCartContextProvider} = jest.requireActual(
+const { ShoppingCartContextProvider } = jest.requireActual(
   'contexts/ShoppingCartContext',
 )
 
@@ -39,7 +39,8 @@ const product: Product = {
 
 describe('Header', () => {
   let renderResult: RenderResult
-  const useShoppingCartContextMock = useShoppingCartContext as jest.MockedFunction<typeof useShoppingCartContext>
+  const useShoppingCartContextMock =
+    useShoppingCartContext as jest.MockedFunction<typeof useShoppingCartContext>
 
   // カートに商品が存在する時にバッジが表示されているか
   it('カートに商品が存在する', async () => {
@@ -49,7 +50,7 @@ describe('Header', () => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       addProductToCart: () => {},
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      removeProductFromCart: () => {}
+      removeProductFromCart: () => {},
     })
 
     renderResult = render(
@@ -57,7 +58,7 @@ describe('Header', () => {
         <ShoppingCartContextProvider>
           <AuthContextProvider
             authUser={authUser}
-            context={{apiRootUrl: 'https://dummy'}}
+            context={{ apiRootUrl: 'https://dummy' }}
           >
             <Header />
           </AuthContextProvider>
@@ -76,15 +77,13 @@ describe('Header', () => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       addProductToCart: () => {},
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      removeProductFromCart: () => {}
+      removeProductFromCart: () => {},
     })
 
     renderResult = render(
       <ThemeProvider theme={theme}>
         <ShoppingCartContextProvider>
-          <AuthContextProvider
-            context={{apiRootUrl: 'https://dummy'}}
-          >
+          <AuthContextProvider context={{ apiRootUrl: 'https://dummy' }}>
             <Header />
           </AuthContextProvider>
         </ShoppingCartContextProvider>
@@ -92,10 +91,10 @@ describe('Header', () => {
     )
 
     // サインインしていない
-    expect(screen.queryByTestId('profile-shape-image')).toBeNull()  // プロファイル画像が空
+    expect(screen.queryByTestId('profile-shape-image')).toBeNull() // プロファイル画像が空
 
     // カートが空
-    expect(screen.queryByTestId('badge-wrapper')).toBeNull()        // カートが空
+    expect(screen.queryByTestId('badge-wrapper')).toBeNull() // カートが空
 
     renderResult.unmount()
     useShoppingCartContextMock.mockReset()

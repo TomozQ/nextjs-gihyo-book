@@ -11,8 +11,3 @@ export const theme = {
   lineHeights,
   colors,
 } as const
-
-/**
- * as const
- *  ... readonly
- */

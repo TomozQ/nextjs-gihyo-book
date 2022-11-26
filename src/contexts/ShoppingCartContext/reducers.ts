@@ -1,18 +1,17 @@
-import React from "react";
-import { Product } from "types";
+import { Product } from 'types'
 
 export const ADD_PRODUCT = 'ADD_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
-type ShopReducerAction = 
+type ShopReducerAction =
   | {
-    type: 'ADD_PRODUCT'
-    payload: Product
-  }
+      type: 'ADD_PRODUCT'
+      payload: Product
+    }
   | {
-    type: 'REMOVE_PRODUCT'
-    payload: number
-  }
+      type: 'REMOVE_PRODUCT'
+      payload: number
+    }
 
 /**
  * 商品追加アクション
@@ -26,20 +25,20 @@ const addProductToCart = (product: Product, state: Product[]) => {
 
 /**
  * 商品削除アクション
- * @param productId 商品ID
+ * @param product 商品
  * @param state 現在の状態
  * @returns 次の状態
  */
 const removeProductFromCart = (productId: number, state: Product[]) => {
   const removedItemIndex = state.findIndex((item) => item.id === productId)
-  
+
   state.splice(removedItemIndex, 1)
 
   return [...state]
 }
 
 /**
- * ショッピングカートのreduer
+ * ショッピングカートのReducer
  * @param state 現在の状態
  * @param action アクション
  * @returns 次の状態

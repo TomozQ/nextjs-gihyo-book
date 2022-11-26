@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-eslint-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
 import { theme } from 'themes'
 import type { ResponsiveProp, Responsive } from 'types'
@@ -7,10 +7,6 @@ import type { ResponsiveProp, Responsive } from 'types'
 export type AppTheme = typeof theme
 
 type SpaceThemeKeys = keyof typeof theme.space
-/**
- * const space: any = ['0px', '8px', '16px', '32px', '64px']
- * let obj1: keyof typeof space // -> obj1 = '0px' | '8px' | '16px' | '32px' | '64px'
- */
 type ColorThemeKeys = keyof typeof theme.colors
 type FontSizeThemeKeys = keyof typeof theme.fontSizes
 type LetterSpacingThemeKeys = keyof typeof theme.letterSpacings
@@ -23,7 +19,7 @@ export type FontSize = FontSizeThemeKeys | (string & {})
 export type LetterSpacing = LetterSpacingThemeKeys | (string & {})
 export type LineHeight = LineHeightThemeKeys | (string & {})
 
-// ブレークポイント
+// ブレイクポイント
 const BREAKPOINTS: { [key: string]: string } = {
   sm: '640px', // 640px以上
   md: '768px', // 768px以上
@@ -36,7 +32,7 @@ const BREAKPOINTS: { [key: string]: string } = {
  * @param propKey CSSプロパティ
  * @param prop Responsive型
  * @param theme AppTheme
- * @returns CSSプロパティとその値(ex. background-color: white;)
+ * @returns CSSプロパティとその値 (ex. background-color: white;)
  */
 export function toPropValue<T>(
   propKey: string,
@@ -65,8 +61,7 @@ export function toPropValue<T>(
       ) {
         // メディアクエリでのスタイル
         const breakpoint = BREAKPOINTS[responsiveKey]
-        const style = `
-          ${propKey}: ${toThemeValueIfNeeded(
+        const style = `${propKey}: ${toThemeValueIfNeeded(
           propKey,
           prop[responsiveKey],
           theme,
@@ -76,6 +71,7 @@ export function toPropValue<T>(
     }
     return result.join('\n')
   }
+
   return `${propKey}: ${toThemeValueIfNeeded(propKey, prop, theme)};`
 }
 
@@ -91,7 +87,7 @@ const SPACE_KEYS = new Set([
   'padding-bottom',
   'padding-right',
 ])
-const COLORS_KEYS = new Set(['color', 'background-color'])
+const COLOR_KEYS = new Set(['color', 'background-color'])
 const FONT_SIZE_KEYS = new Set(['font-size'])
 const LINE_SPACING_KEYS = new Set(['letter-spacing'])
 const LINE_HEIGHT_KEYS = new Set(['line-height'])
@@ -114,7 +110,7 @@ function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
   } else if (
     theme &&
     theme.colors &&
-    COLORS_KEYS.has(propKey) &&
+    COLOR_KEYS.has(propKey) &&
     isColorThemeKeys(value, theme)
   ) {
     return theme.colors[value]

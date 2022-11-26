@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Text from "components/atoms/Text";
-import Box from "components/layout/Box";
-import CheckBox from "../Checkbox";
+import React, { useCallback, useEffect, useState } from 'react'
+import Text from 'components/atoms/Text'
+import Box from 'components/layout/Box'
+import CheckBox from 'components/molecules/CheckBox'
 
 type Item = {
   label: string
@@ -22,37 +22,38 @@ type FilterGroupProps = {
 const FilterGroup = ({
   title,
   items,
-  value=[],
-  defaultValue=[],
+  value = [],
+  defaultValue = [],
   onChange,
 }: FilterGroupProps) => {
-  const [selected, setSelected] = useState(value ?? defaultValue) // valueがある場合はvalue, ない場合はdefaultValue
+  const [selected, setSelected] = useState(value ?? defaultValue)
 
   useEffect(() => {
     setSelected(value)
-  },[value])
+  }, [value])
 
-  const handleChange = useCallback((
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = e.target.name
-    const newSelected = e.target.checked
-      ? [...selected, value]
-      : selected.filter((v) => v != value)
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.name
+      const newSelected = e.target.checked
+        ? [...selected, value]
+        : selected.filter((v) => v !== value)
 
-    setSelected(newSelected)
-    onChange && onChange(newSelected)
-  },[onChange, selected],)
+      setSelected(newSelected)
+      onChange && onChange(newSelected)
+    },
+    [onChange, selected],
+  )
 
   return (
     <>
-      <Text fontWeight='bold' variant='mediumLarge'>
+      <Text fontWeight="bold" variant="mediumLarge">
         {title}
       </Text>
       <Box marginTop={2}>
-        {items.map(({label, name}, i) => (
+        {items.map(({ label, name }, i) => (
           <Box key={i} marginTop={i === 0 ? 0 : '4px'}>
-            <CheckBox 
+            <CheckBox
               name={name}
               label={label}
               checked={!!selected.find((e) => e === name)}
@@ -66,10 +67,3 @@ const FilterGroup = ({
 }
 
 export default FilterGroup
-
-/**
- * 調べること
- * ・find
- * !!selected.find((e) => e === name)
- * !!の二重否定があることにより e と一致するものがあるかないかをbooleanで返す
- */

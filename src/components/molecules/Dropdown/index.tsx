@@ -81,15 +81,12 @@ interface DropdownItemProps {
   item: DropdownItem
 }
 
-/**
- * ドロップダウンの選択した要素
- */
 const DropdownItem = (props: DropdownItemProps) => {
   const { item } = props
 
   return (
-    <Flex alignItems='center'>
-      <Text margin={0} variant='small'>
+    <Flex alignItems="center">
+      <Text margin={0} variant="small">
         {item.label ?? item.value}
       </Text>
     </Flex>
@@ -98,7 +95,7 @@ const DropdownItem = (props: DropdownItemProps) => {
 
 export interface DropdownItem {
   value: string | number | null
-  label? : string
+  label?: string
 }
 
 interface DropdownProps {
@@ -128,35 +125,39 @@ interface DropdownProps {
   onChange?: (selected?: DropdownItem) => void
 }
 
+/**
+ * ドロップダウン
+ */
 const Dropdown = (props: DropdownProps) => {
-  const {onChange, name, options, hasError} = props
-  const initialItem = options.find((i) => i.value === props.value)
+  const { onChange, name, value, options, hasError } = props
+  const initialItem = options.find((i) => i.value === value)
   const [isOpen, setIsOpenValue] = useState(false)
   const [selectedItem, setSelectedItem] = useState(initialItem)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  const hadnleDocumentClick = useCallback((e: MouseEvent | TouchEvent) => {
-    // 自分自身をクリックした場合は何もしない
-    if (dropdownRef.current) {
-      const elems = dropdownRef.current.querySelectorAll('*')
+  const handleDocumentClick = useCallback(
+    (e: MouseEvent | TouchEvent) => {
+      // 自分自身をクリックした場合は何もしない
+      if (dropdownRef.current) {
+        const elems = dropdownRef.current.querySelectorAll('*')
 
-      for (let i = 0; i < elems.length; i++) {
-        if(elems[i] == e.target) {
-          return
+        for (let i = 0; i < elems.length; i++) {
+          if (elems[i] == e.target) {
+            return
+          }
         }
       }
-    }
 
-    setIsOpenValue(false)
-  }, [ dropdownRef ])
+      setIsOpenValue(false)
+    },
+    [dropdownRef],
+  )
 
-  // マウスダウンした時にドロップダウンを開く
   const handleMouseDown = (e: React.SyntheticEvent) => {
     setIsOpenValue((isOpen) => !isOpen)
     e.stopPropagation()
   }
 
-  // ドロップダウンから選択した時
   const handleSelectValue = (
     e: React.FormEvent<HTMLDivElement>,
     item: DropdownItem,
@@ -169,17 +170,17 @@ const Dropdown = (props: DropdownProps) => {
   }
 
   useEffect(() => {
-    // 画面外のクリックとタッチをイベント設定
-    document.addEventListener('click', hadnleDocumentClick, false)
-    document.addEventListener('touchend', hadnleDocumentClick, false)
-    
+    // 画面外のクリックとタッチをイベントを設定
+    document.addEventListener('click', handleDocumentClick, false)
+    document.addEventListener('touchend', handleDocumentClick, false)
+
     return function cleanup() {
-      document.removeEventListener('click', hadnleDocumentClick, false)
-      document.removeEventListener('touchend', hadnleDocumentClick, false)
+      document.removeEventListener('click', handleDocumentClick, false)
+      document.removeEventListener('touchend', handleDocumentClick, false)
     }
     // 最初だけ呼び出す
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  }, [])
 
   return (
     <DropdownRoot ref={dropdownRef}>
@@ -187,26 +188,27 @@ const Dropdown = (props: DropdownProps) => {
         hasError={hasError}
         onMouseDown={handleMouseDown}
         onTouchEnd={handleMouseDown}
+        data-testid="dropdown-control"
       >
         {selectedItem && (
           <DropdownValue>
-            <DropdownItem item={selectedItem}/>
+            <DropdownItem item={selectedItem} />
           </DropdownValue>
         )}
-        {/* 何も選択されていない場合はプレースホルダーを表示 */}
+        {/* 何も選択されてない時はプレースホルダーを表示 */}
         {!selectedItem && (
           <DropdownPlaceholder>{props?.placeholder}</DropdownPlaceholder>
         )}
-        {/* ダミーインプット */}
-        <input 
-          type='hidden'
+        {/* ダミーinput */}
+        <input
+          type="hidden"
           name={name}
           value={selectedItem?.value ?? ''}
           onChange={() => onChange && onChange(selectedItem)}
         />
-        <DropdownArrow isOpen={isOpen}/>
+        <DropdownArrow isOpen={isOpen} />
       </DropdownControl>
-      {/* ドロップダウン表示 */}
+      {/* ドロップダウンを表示 */}
       {isOpen && (
         <DropdownMenu>
           {props.options.map((item, idx) => (
@@ -214,6 +216,7 @@ const Dropdown = (props: DropdownProps) => {
               key={idx}
               onMouseDown={(e) => handleSelectValue(e, item)}
               onClick={(e) => handleSelectValue(e, item)}
+              data-testid="dropdown-option"
             >
               <DropdownItem item={item} />
             </DropdownOption>

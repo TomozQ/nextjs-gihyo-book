@@ -1,34 +1,21 @@
 import styled from 'styled-components'
-import Flex from 'components/layout/Flex'
 import { CloseIcon } from 'components/atoms/IconButton'
-import Text from 'components/atoms/Text'
-import React from 'react'
+import Box from 'components/layout/Box'
+import Flex from 'components/layout/Flex'
 
-const ImagePreviewContainer = styled.div`
+const ImagePreviewContainer = styled(Box)`
   position: relative;
 `
 
-// 閉じるボタンのラップ
 const CloseBox = styled(Flex)`
   position: absolute;
   top: 0;
   right: 0;
   width: 30px;
   height: 30px;
-  border-radius: 06px 06px;
-  background-color: rgba(44, 44, 44,  0.66);
+  border-radius: 0 6px 0 6px;
+  background-color: rgba(44, 44, 44, 0.66);
   cursor: pointer;
-`
-
-// 画像タイトル
-const ImageTitle = styled(Text)`
-  position: absolute;
-  top: 14px;
-  border-radius: 06px 06px 0;
-  background-color: #1d3461;
-  box-sizing: border-box;
-  padding-left: 4px;
-  padding-right: 4px;
 `
 
 interface ImagePreviewProps {
@@ -49,7 +36,7 @@ interface ImagePreviewProps {
    */
   width?: string
   /**
-   * 削除ボタンを押したときのイベントハンドラ
+   * 削除ボタンを押した時のイベントハンドラ
    */
   onRemove?: (src: string) => void
 }
@@ -74,15 +61,15 @@ const ImagePreview = ({
   }
 
   return (
-    <ImagePreviewContainer>
+    <ImagePreviewContainer height={height} width={width}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={src} alt={alt} height={height} width={width} />
       <CloseBox
-        alignItems='center'
-        justifyContent='center'
+        alignItems="center"
+        justifyContent="center"
         onClick={handleCloseClick}
       >
-        <CloseIcon size={24} color='white' />
+        <CloseIcon size={24} color="white" />
       </CloseBox>
     </ImagePreviewContainer>
   )

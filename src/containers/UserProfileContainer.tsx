@@ -20,15 +20,15 @@ interface UserProfileContainerProps {
 /**
  * ユーザープロフィールコンテナ
  */
-const UserProfileContainer = ({userId, user}: UserProfileContainerProps) => {
+const UserProfileContainer = ({ userId, user }: UserProfileContainerProps) => {
   // 最新のユーザー情報を取得し、更新があった場合には
   // initialで指定されているデータを上書きする
-  const { user: u } = useUser(context, {id: userId, initial: user})
+  const { user: u } = useUser(context, { id: userId, initial: user })
 
-  if(!u) return <div>Loading ... </div>
+  if (!u) return <div>Loading...</div>
 
   return (
-    <UserProfile 
+    <UserProfile
       username={`${u.username} (${u.displayName})`}
       profileImageUrl={u.profileImageUrl}
       numberOfProducts={100}

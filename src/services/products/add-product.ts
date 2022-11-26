@@ -10,7 +10,7 @@ export type AddProductsParams = {
 
 /**
  * プロダクトAPI（新規追加）
- * @param cotext APIコンテキスト
+ * @param context APIコンテキスト
  * @param params 新規追加する商品
  * @returns 新規追加した商品
  */

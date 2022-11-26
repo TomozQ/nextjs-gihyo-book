@@ -1,47 +1,47 @@
-import React, { useState, useEffect } from "react";
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import ImagePreview from './index'
-import Dropzone from "components/molecules/Dropzone";
+import ImagePreview from './'
+import Dropzone from 'components/molecules/Dropzone'
 
 export default {
   title: 'Molecules/ImagePreview',
   argTypes: {
     src: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       description: '画像URL',
       table: {
-        type: {summary: 'string' }
-      }
+        type: { summary: 'string' },
+      },
     },
     alt: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       description: '代替テキスト',
       table: {
-        type: {summary: 'string'}
-      }
+        type: { summary: 'string' },
+      },
     },
     height: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       description: '縦幅',
       table: {
-        type: {summary: 'number'}
-      }
+        type: { summary: 'number' },
+      },
     },
     width: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       description: '横幅',
       table: {
-        type: {summary: 'number'}
-      }
+        type: { summary: 'number' },
+      },
     },
     onRemove: {
       description: '削除ボタンを押した時のイベントハンドラ',
       table: {
-        type: {summary: 'function'}
-      }
-    }
-  }
+        type: { summary: 'function' },
+      },
+    },
+  },
 } as ComponentMeta<typeof ImagePreview>
 
 const Container = styled.div`
@@ -56,14 +56,13 @@ interface Image {
   src?: string
 }
 
-// ドロップゾーンとの組み合わせ
 const Template: ComponentStory<typeof ImagePreview> = (args) => {
   const [files, setFiles] = useState<File[]>([])
   const [images, setImages] = useState<Image[]>([])
 
   useEffect(() => {
-    // ファイルの数が変更されると、表示する画像を変更
     const newImages = [...images]
+
     for (const f of files) {
       const index = newImages.findIndex((img: Image) => img.file === f)
 
@@ -75,9 +74,9 @@ const Template: ComponentStory<typeof ImagePreview> = (args) => {
       }
     }
     setImages(newImages)
-  },[files])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [files])
 
-  // 閉じるボタンが押されたら、画像を削除
   const handleRemove = (src: string) => {
     const image = images.find((img: Image) => img.src === src)
 
@@ -93,11 +92,11 @@ const Template: ComponentStory<typeof ImagePreview> = (args) => {
     <Container>
       <Dropzone value={files} onDrop={(fileList) => setFiles(fileList)} />
       {images.map((image, i) => (
-        <ImagePreview 
+        <ImagePreview
           key={i}
           src={image.src}
+          width="100px"
           {...args}
-          width='200px'
           onRemove={handleRemove}
         />
       ))}

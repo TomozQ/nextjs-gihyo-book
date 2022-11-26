@@ -37,7 +37,7 @@ const useUser = (
   { id, initial }: UseUserProps,
 ): UseUser => {
   const { data, error } = useSWR<User>(
-    `${context.apiRootUrl.replace(/\/$/g, '')}/users/${id}`,    // デフォルトのfetcherを使う場合は第二引数が不要となり、keyに渡したpassに対してGETが走る。
+    `${context.apiRootUrl.replace(/\/$/g, '')}/users/${id}`,
   )
 
   return {

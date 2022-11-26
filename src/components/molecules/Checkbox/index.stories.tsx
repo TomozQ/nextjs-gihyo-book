@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 import CheckBox from './index'
-import Box from 'components/layout/Box'
-import { Checkbox } from '@mui/material'
 
 export default {
   title: 'Molecules/CheckBox',
   argTypes: {
     label: {
       control: { type: 'text' },
-      description: 'ラベル',
+      description: '表示ラベル',
       table: {
-        type: {summary: 'text'}
+        type: { summary: 'text' },
       },
     },
     checked: {
       control: { type: 'boolean' },
       description: 'チェック',
       table: {
-        type: { summary: 'number' }
-      }
+        type: { summary: 'number' },
+      },
     },
     onChange: {
       description: '値が変化した時のイベントハンドラ',
@@ -35,4 +32,4 @@ const Template: ComponentStory<typeof CheckBox> = (args) => (
 )
 
 export const WithLabel = Template.bind({})
-WithLabel.args = {label: 'Label'}
+WithLabel.args = { label: 'Label' }

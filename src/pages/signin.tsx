@@ -1,22 +1,22 @@
-import type { NextPage } from "next";
+import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import AppLogo from "components/atoms/AppLogo";
-import Box from "components/layout/Box";
-import Flex from "components/layout/Flex";
-import Layout from "components/templates/Layout";
+import AppLogo from 'components/atoms/AppLogo'
+import Box from 'components/layout/Box'
+import Flex from 'components/layout/Flex'
+import Layout from 'components/templates/Layout'
 import SigninFormContainer from 'containers/SigninFormContainer'
 
 const SigninPage: NextPage = () => {
   const router = useRouter()
   // 認証後のイベントハンドラ
   const handleSignin = async (err?: Error) => {
-    if(!err) {
-      // サインインに成功し、クエリが指定されている場合はそのURLに移動
-      // デフォルトはトップページに移動
-      const redirectTo = (router.query['redirect?to'] as string ?? '/')
+    if (!err) {
+      // サインインに成功し、クエリが指定されている場合はそのURLに移動。
+      // デフォルトはトップページに移動。
+      const redurectTo = (router.query['redirect_to'] as string) ?? '/'
 
-      console.log('Redirecting', redirectTo)
-      await router.push(redirectTo)
+      console.log('Redirecting', redurectTo)
+      await router.push(redurectTo)
     }
   }
 
@@ -25,26 +25,26 @@ const SigninPage: NextPage = () => {
       <Flex
         paddingTop={2}
         paddingBottom={2}
-        paddingLeft={{base: 2, md: 0}}
-        paddingRight={{base: 2, md: 0}}
-        justifyContent='center'
+        paddingLeft={{ base: 2, md: 0 }}
+        paddingRight={{ base: 2, md: 0 }}
+        justifyContent="center"
       >
         <Flex
-          width='400px'
-          flexDirection='column'
-          justifyContent='center'
-          alignItems='center'
+          width="400px"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
         >
           <Box marginBottom={2}>
             <AppLogo />
           </Box>
-          <Box width='100%'>
-            {/* 
+          <Box width="100%">
+            {/*
               サインインフォームコンテナ
-              SigninFormのユーザー名。パスワードから認証APIを呼び出し、
-              onSigninコールバックが呼び出される。
-             */}
-             <SigninFormContainer onSignin={handleSignin} />
+              SigninFormのユーザー名・パスワードから認証APIを呼び出し、
+              onSigninコールバックが呼び出される
+            */}
+            <SigninFormContainer onSignin={handleSignin} />
           </Box>
         </Flex>
       </Flex>
@@ -53,10 +53,3 @@ const SigninPage: NextPage = () => {
 }
 
 export default SigninPage
-
-/**
- * 調べること
- * ・useRouter
- * ルーティング情報にアクセスするためのフック
- * router.push()でページ遷移
- */

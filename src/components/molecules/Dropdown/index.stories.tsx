@@ -5,76 +5,74 @@ export default {
   title: 'Molecules/Dropdown',
   argTypes: {
     options: {
-      control: {type: 'array'},
+      control: { type: 'array' },
       description: 'ドロップダウンの選択肢',
       table: {
-        type: {summary: 'array'},
+        type: { summary: 'array' },
       },
     },
     hasError: {
-      control: {type: 'boolean'},
+      control: { type: 'boolean' },
       defaultValue: false,
       description: 'バリデーションエラーフラグ',
       table: {
-        type: {summary: 'boolean'}
+        type: { summary: 'boolean' },
       },
     },
     placeholder: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       description: 'プレースホルダー',
       table: {
-        type: {summary: 'string'}
+        type: { summary: 'string' },
       },
     },
     value: {
-      control: {type: 'text'},
+      control: { type: 'text' },
       description: 'ドロップダウンの値',
       table: {
-        type: { summary: 'string'},
+        type: { summary: 'string' },
       },
     },
     onChange: {
       description: '値が変化した時のイベントハンドラ',
       table: {
-        type: {summary: 'function'},
+        type: { summary: 'function' },
       },
     },
-  }
+  },
 } as ComponentMeta<typeof Dropdown>
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (
-  <Dropdown { ...args } />
+  <Dropdown {...args} />
 )
 
 export const Normal = Template.bind({})
 Normal.args = {
   options: [
-    {value: null, label: '-'},
-    {value: 'one', label: 'One'},
-    {value: 'two', label: 'Two'},
-    {value: 'three', label: 'Three'},
+    { value: null, label: '-' },
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' },
+    { value: 'three', label: 'Three' },
   ],
   placeholder: 'Please select items from the list',
 }
 
-// 初期値を設定
 export const InitialValue = Template.bind({})
 InitialValue.args = {
   options: [
-    {value: null, label: '-'},
-    {value: 'one', label: 'One'},
-    {value: 'two', label: 'Two'},
-    {value: 'three', label: 'Three'},
+    { value: null, label: '-' },
+    { value: 'one', label: 'One' },
+    { value: 'two', label: 'Two' },
+    { value: 'three', label: 'Three' },
   ],
   placeholder: 'Please select items from the list',
   value: 'one',
 }
 
-// 多くの要素を表示
 export const Many = Template.bind({})
 Many.args = {
   options: Array.from(Array(20), (_v, k) => {
-    return {value: k.toString(), label: k.toString()}
+    return { value: k.toString(), label: k.toString() }
   }),
   placeholder: 'Please select items from the list',
 }

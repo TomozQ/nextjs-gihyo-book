@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import React, { useState, useEffect } from 'react'
 import Dropzone from './index'
 import Button from 'components/atoms/Button'
 import Box from 'components/layout/Box'
@@ -8,49 +8,49 @@ export default {
   title: 'Molecules/Dropzone',
   argTypes: {
     height: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       description: '縦幅',
       table: {
-        type: {summary: 'number'}
+        type: { summary: 'number' },
       },
     },
     width: {
-      control: {type: 'number'},
+      control: { type: 'number' },
       description: '横幅',
       table: {
-        type: {summary: 'number'}
+        type: { summary: 'number' },
       },
     },
     hasError: {
-      control: {type: 'boolean'},
+      control: { type: 'boolean' },
       defaultValue: false,
       description: 'バリデーションエラーフラグ',
       table: {
-        type: { summary: 'boolean' }
+        type: { summary: 'boolean' },
       },
     },
     acceptedFileTypes: {
       options: {
-        control: {type: 'array'},
+        control: { type: 'array' },
         description: '受け付けるファイルタイプ',
         table: {
-          type: {summary: 'array'},
+          type: { summary: 'array' },
         },
       },
     },
     onDrop: {
-      description: 'ファイルがドロップ入力されたときのイベントハンドラ',
+      description: 'ファイルがドロップ入力された時のイベントハンドラ',
       table: {
-        type: {summary: 'function'}
+        type: { summary: 'function' },
       },
     },
-    onChnage: {
-      description: 'ファイルが入力されたときのイベントハンドラ',
+    onChange: {
+      description: 'ファイルが入力された時のイベントハンドラ',
       table: {
-        type: {summary: 'function'}
-      }
-    }
-  }
+        type: { summary: 'function' },
+      },
+    },
+  },
 } as ComponentMeta<typeof Dropzone>
 
 const Template: ComponentStory<typeof Dropzone> = (args) => {
@@ -61,7 +61,7 @@ const Template: ComponentStory<typeof Dropzone> = (args) => {
   }
 
   const fetchData = async () => {
-    const res = await fetch('/images/sample/1.jpeg')
+    const res = await fetch('/images/sample/1.jpg')
     const blob = await res.blob()
     const file = new File([blob], '1.png', blob)
 
@@ -74,7 +74,8 @@ const Template: ComponentStory<typeof Dropzone> = (args) => {
 
   useEffect(() => {
     fetchData()
-  },[])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -85,16 +86,16 @@ const Template: ComponentStory<typeof Dropzone> = (args) => {
         <Button onClick={fetchData}>画像を追加</Button>
       </Box>
       <Box marginBottom={2}>
-        <Button onClick={clearImages}>すべての画像をクリア</Button>
+        <Button onClick={clearImages}>全ての画像をクリア</Button>
       </Box>
       <Box>
         {files.map((f, i) => (
           // eslint-disable-next-line @next/next/no-img-element
-          <img 
+          <img
             src={URL.createObjectURL(f)}
-            width={'100px'}
+            width="100px"
             key={i}
-            alt='sample'
+            alt="sample"
           />
         ))}
       </Box>
@@ -107,4 +108,5 @@ WithControl.args = {
   height: 200,
   width: '100%',
   acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
+  hasError: false,
 }

@@ -1,8 +1,8 @@
-import React, { useState, useRef, useCallback, useEffect, } from 'react'
+import React, { useState, useRef, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import { CloudUploadIcon } from 'components/atoms/IconButton'
 
-// eslint-disable-next-line @typescript-eslint-/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isDragEvt = (value: any): value is React.DragEvent => {
   return !!value.dataTransfer
 }
@@ -17,7 +17,7 @@ const isInput = (value: EventTarget | null): value is HTMLInputElement => {
  * @returns Fileの配列
  */
 const getFilesFromEvent = (e: React.DragEvent | React.ChangeEvent): File[] => {
-  if(isDragEvt(e)){
+  if (isDragEvt(e)) {
     return Array.from(e.dataTransfer.files)
   } else if (isInput(e.target) && e.target.files) {
     return Array.from(e.target.files)
@@ -27,7 +27,7 @@ const getFilesFromEvent = (e: React.DragEvent | React.ChangeEvent): File[] => {
 }
 
 // ファイルのContent-Type
-type FileType = 
+type FileType =
   | 'image/png'
   | 'image/jpeg'
   | 'image/jpg'
@@ -74,14 +74,14 @@ interface DropzoneProps {
 type DropzoneRootProps = {
   isFocused?: boolean
   hasError?: boolean
-  width?: string | number
-  height?: string | number
+  width: string | number
+  height: string | number
 }
 
 // ドロップゾーンの外側の外観
 const DropzoneRoot = styled.div<DropzoneRootProps>`
   border: 1px dashed
-    ${( {theme, isFocused, hasError} ) => {
+    ${({ theme, isFocused, hasError }) => {
       if (hasError) {
         return theme.colors.danger
       } else if (isFocused) {
@@ -92,10 +92,12 @@ const DropzoneRoot = styled.div<DropzoneRootProps>`
     }};
   border-radius: 8px;
   cursor: pointer;
-  width: ${( { width } ) => (typeof width === 'number' ? `${width}px` : width)}};
-  height: ${( { height } ) => (typeof height === 'number' ? `${height}px` : height)};
+  width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
+  height: ${({ height }) =>
+    typeof height === 'number' ? `${height}px` : height};
 `
 
+// ドロップゾーンの中身
 const DropzoneContent = styled.div<{
   width: string | number
   height: string | number
@@ -104,8 +106,9 @@ const DropzoneContent = styled.div<{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: ${( { width } ) => (typeof width === 'number' ? `${width}px` : width)}};
-  height: ${( { height } ) => (typeof height === 'number' ? `${height}px` : height)};
+  width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
+  height: ${({ height }) =>
+    typeof height === 'number' ? `${height}px` : height};
 `
 
 const DropzoneInputFile = styled.input`
@@ -114,20 +117,19 @@ const DropzoneInputFile = styled.input`
 
 /**
  * ドロップゾーン
- * ファイルの入力を受け取る
+ * ファイルの入力を受け付ける
  */
-const Dropzone = (props: DropzoneProps) =>  {
+const Dropzone = (props: DropzoneProps) => {
   const {
     onDrop,
     onChange,
     value = [],
     name,
-    acceptedFileTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif',],
+    acceptedFileTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'],
     hasError,
     width = '100%',
-    height = '200px'
+    height = '200px',
   } = props
-
   const rootRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [isFocused, setIsFocused] = useState(false)
@@ -136,7 +138,7 @@ const Dropzone = (props: DropzoneProps) =>  {
     setIsFocused(false)
 
     const files = value.concat(
-      getFilesFromEvent(e).filter((f) => 
+      getFilesFromEvent(e).filter((f) =>
         acceptedFileTypes.includes(f.type as FileType),
       ),
     )
@@ -152,16 +154,16 @@ const Dropzone = (props: DropzoneProps) =>  {
     setIsFocused(false)
 
     const files = value.concat(
-      getFilesFromEvent(e).filter((f) => 
-        acceptedFileTypes.includes(f.type as FileType)
-      )
+      getFilesFromEvent(e).filter((f) =>
+        acceptedFileTypes.includes(f.type as FileType),
+      ),
     )
 
     if (files.length == 0) {
       return window.alert(
         `次のファイルフォーマットは指定できません${acceptedFileTypes.join(
           ' ,',
-        )}`
+        )})`,
       )
     }
 
@@ -169,25 +171,25 @@ const Dropzone = (props: DropzoneProps) =>  {
     onChange && onChange(files)
   }
 
-  // ドラッグ状態のマウスポインタが範囲内に入っている時
+  // ドラッグ状態のマウスポインタが範囲内入っている時
   const handleDragOver = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     e.stopPropagation()
-  },[])
+  }, [])
 
   // ドラッグ状態のマウスポインタが範囲外に消えた時にフォーカスを外す
   const handleDragLeave = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     e.stopPropagation()
     setIsFocused(false)
-  },[])
-  
+  }, [])
+
   // ドラッグ状態のマウスポインタが範囲内に来た時にフォーカスを当てる
   const handleDragEnter = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     e.stopPropagation()
     setIsFocused(true)
-  },[])
+  }, [])
 
   // ファイル選択ダイアログを表示する
   const handleClick = () => {
@@ -198,11 +200,11 @@ const Dropzone = (props: DropzoneProps) =>  {
     if (inputRef.current && value && value.length == 0) {
       inputRef.current.value = ''
     }
-  },[value])
+  }, [value])
 
   return (
     <>
-      {/* ドラッグアンドドロップイベントを管理 */}
+      {/* ドラックアンドドロップイベントを管理 */}
       <DropzoneRoot
         ref={rootRef}
         isFocused={isFocused}
@@ -214,12 +216,12 @@ const Dropzone = (props: DropzoneProps) =>  {
         hasError={hasError}
         width={width}
         height={height}
-        data-testid='dropzone'
+        data-testid="dropzone"
       >
         {/* ダミーインプット */}
-        <DropzoneInputFile 
+        <DropzoneInputFile
           ref={inputRef}
-          type='file'
+          type="file"
           name={name}
           accept={acceptedFileTypes.join(',')}
           onChange={handleChange}
@@ -227,7 +229,7 @@ const Dropzone = (props: DropzoneProps) =>  {
         />
         <DropzoneContent width={width} height={height}>
           <CloudUploadIcon size={24} />
-          <span style={{textAlign: 'center'}}>デバイスからアップロード</span>
+          <span style={{ textAlign: 'center' }}>デバイスからアップロード</span>
         </DropzoneContent>
       </DropzoneRoot>
     </>
@@ -240,78 +242,3 @@ Dropzone.defaultProps = {
 }
 
 export default Dropzone
-
-/**
- * 調べること
- * --------------------------------
- * ・is
- * TypeScriptの型推論を補強するuser-defined type guard(ユーザー定義型ガード)
- * unknown型、any型、Union型の型の絞り込みができる。
- * 
- * 例えば
- * ... 引数の型がstring型だったら文字列の長さを出力する関数
- * const example = (foo: unknown) => {
- *  if(typeof foo === 'string'){
- *    console.log(foo.length)
- *  }
- * }
- * 他にもstring型への絞り込みが必要な関数があり、typeof foo === 'string'の部分を
- * isSring関数に抽出して汎用的に使いまわしたいとする。
- * ... そうすると
- * const isString(bar: unknown): boolean => {
- *  return typeof bar === 'string'
- * }
- * 
- * const example = (foo: unknown) => {
- *  if(isString(foo)){
- *    console.log(foo.length)   // -> Error fooはまだunkownとして推論される。
- *  }
- * }
- * となるが
- * typeofでの型の絞り込みは関数スコープで完結してしまうので、isStringがtrueの場合でも、まだfooはunknown型として推論され、型の絞り込みが行えない。
- * 
- * こんな時に is を使う
- * ... つまり
- * const isString(bar: unknown): bar is string => {   // isを使うとisStringの結果がtrueの場合は引数で受け取った変数の型は、string型であるとコンパイラに伝えることができる。
- *  return typeof bar === 'string'
- * }
- * 
- * const example = (foo: unknown) => {
- *  if(isString(foo)){
- *    console.log(foo.length)   // -> fooはまstringとして推論される。
- *  }
- * }
- * --------------------------------
- * ・!!
- * 二重論理否定
- * 否定の否定なので元に戻って意味がないように見えるが、論理否定演算子には任意の型をBoolean型に変換するという副作用があるため、評価値は必ずBoolean型となる。
- * つまり
- * Boolean型への型変換
- * 今回の場合は
- * const isDragEvt = (value: any): value is React.DragEvent => {
- *  return !!value.dataTransfer
- * }
- * なので
- * value.dataTransferがあれば（trueならば）value をReact.DragEvent型として推論させるという関数になっている。
- * --------------------------------
- * ・e.dataTransfer
- * ドラッグアンドドロップ操作中にドラッグされているデータを保持するために使用される。
- * 
- * ・e.dataTransfer.files
- * ドラッグ操作中のファイルのリスト
- * --------------------------------
- * ・concat
- * 配列の結合
- * const arr1 = ['a', 'b', 'c']
- * const arr2 = ['d', 'e', 'f']
- * const arr3 = arr1.concat(arr2)
- * console.log(arr3) // ['a', 'b', 'c', 'd', 'e', 'f']
- * 今回の場合は
- * const files = value.concat(
- *   getFilesFromEvent(e).filter((f) => 
- *     acceptedFileTypes.includes(f.type as FileType)
- *   )
- * )
- * イベントによって別で用意されている取得方法（DragEventかChangeEvent）で取得した「dataTransfer.files or target.files」をvalue(配列)と結合する。
- * --------------------------------
- */

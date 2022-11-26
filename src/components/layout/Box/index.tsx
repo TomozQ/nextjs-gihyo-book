@@ -5,22 +5,6 @@ import { toPropValue, Color, Space } from 'utils/styles'
 
 export type BoxProps = {
   color?: Responsive<Color>
-  /**
-   * Responsive -> type Responsive<T> = T | ResponsiveProp<T>
-   * <T> ... 型引数
-   * Color -> type Color = "primary" | "primaryDark" | "primaryLight" | ...中略... | (string & {})
-   * ResponsiveProp<T>
-   * type ResponsiveProp<T> = {
-   *    base?: T | undefined;
-   *    sm?: T | undefined;
-   *    md?: T | undefined;
-   *    lg?: T | undefined;
-   *    xl?: T | undefined;
-   * }
-   * 
-   * Responsive<Color> -> Color(ex. primary, primaryDark) | ex. {base: primary, sm: primaryDark}
-   * ... 直接文字列指定 or サイズごとに指定
-   */
   backgroundColor?: Responsive<Color>
   width?: Responsive<string>
   height?: Responsive<string>

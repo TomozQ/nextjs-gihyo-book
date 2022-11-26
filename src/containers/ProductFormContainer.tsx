@@ -1,6 +1,6 @@
 import ProductForm, { ProductFormData } from 'components/organisms/ProductForm'
-import { useAuthContext} from 'contexts/AuthContext'
-import { useGlobalSpinnerActionContext } from 'contexts/GlobalSpinnerContext'
+import { useAuthContext } from 'contexts/AuthContext'
+import { useGlobalSpinnerActionsContext } from 'contexts/GlobalSpinnerContext'
 import addProduct from 'services/products/add-product'
 import { ApiContext, Product } from 'types'
 
@@ -10,7 +10,7 @@ const context: ApiContext = {
 
 interface ProductFormContainerProps {
   /**
-   * 商品が保存されたときのイベントハンドラ
+   * 商品が保存された時のイベントハンドラ
    */
   onSave?: (error?: Error, product?: Product) => void
 }
@@ -19,8 +19,8 @@ interface ProductFormContainerProps {
  * 商品投稿フォームコンテナ
  */
 const ProductFormContainer = ({ onSave }: ProductFormContainerProps) => {
-  const {authUser} = useAuthContext()
-  const setGlobalSpinner = useGlobalSpinnerActionContext()
+  const { authUser } = useAuthContext()
+  const setGlobalSpinner = useGlobalSpinnerActionsContext()
   // 出品ボタンを押した時
   const handleSave = async (data: ProductFormData) => {
     if (!authUser) return
@@ -31,8 +31,8 @@ const ProductFormContainer = ({ onSave }: ProductFormContainerProps) => {
       description: data.description,
       category: data.category,
       condition: data.condition,
-      price: data.price,
-      imageUrl: '/product/shoes/feet-1840619_1920.jpeg', // ダミー画像
+      price: Number(data.price),
+      imageUrl: '/products/shoes/feet-1840619_1920.jpeg', // ダミー画像
       blurDataUrl: '',
       owner: authUser,
     }
@@ -40,7 +40,7 @@ const ProductFormContainer = ({ onSave }: ProductFormContainerProps) => {
     try {
       setGlobalSpinner(true)
       // プロダクトAPIで商品を追加する
-      const ret = await addProduct(context, {product})
+      const ret = await addProduct(context, { product })
       onSave && onSave(undefined, ret)
     } catch (err: unknown) {
       if (err instanceof Error) {

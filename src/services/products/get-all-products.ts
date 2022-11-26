@@ -62,13 +62,12 @@ const getAllProducts = async (
   limit && params.append('_limit', `${limit}`)
   sort && params.append('_sort', sort)
   order && params.append('_order', order)
-
   const query = params.toString()
 
   return await fetcher(query.length > 0 ? `${path}?${query}` : path, {
     headers: {
       Origin: '*',
-      Accept: 'applicationjson',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       credentials: 'include',
     },

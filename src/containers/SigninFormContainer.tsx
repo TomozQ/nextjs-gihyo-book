@@ -1,6 +1,6 @@
-import SigninForm from "components/organisms/SigninForm";
-import { useAuthContext } from "contexts/AuthContext";
-import { useGlobalSpinnerActionContext } from "contexts/GlobalSpinnerContext";
+import SigninForm from 'components/organisms/SigninForm'
+import { useAuthContext } from 'contexts/AuthContext'
+import { useGlobalSpinnerActionsContext } from 'contexts/GlobalSpinnerContext'
 
 interface SigninFormContainerProps {
   /**
@@ -12,13 +12,10 @@ interface SigninFormContainerProps {
 /**
  * サインインフォームコンテナ
  */
-const SigninFormContainer = ({
-  onSignin,
-}: SigninFormContainerProps) => {
-  const {signin} = useAuthContext()
-  const setGlobalSpinner = useGlobalSpinnerActionContext()
-
-  // サインインボタンを押されたときのイベントハンドラ
+const SigninFormContainer = ({ onSignin }: SigninFormContainerProps) => {
+  const { signin } = useAuthContext()
+  const setGlobalSpinner = useGlobalSpinnerActionsContext()
+  // サインインボタンを押された時のイベントハンドラ
   const handleSignin = async (username: string, password: string) => {
     try {
       // ローディングスピナーを表示する
@@ -26,7 +23,7 @@ const SigninFormContainer = ({
       await signin(username, password)
       onSignin && onSignin()
     } catch (err: unknown) {
-      if(err instanceof Error) {
+      if (err instanceof Error) {
         // エラーの内容を表示
         window.alert(err.message)
         onSignin && onSignin(err)
@@ -40,13 +37,3 @@ const SigninFormContainer = ({
 }
 
 export default SigninFormContainer
-
-
-/**
- * 調べること
- * ・instanceof 
- * 継承している値かどうかを論理値で返す。
- * 今回の場合は
- * if(err instanceof Error) {}
- * errがErrorを継承しているかどうか（コンストラクターにプロパティが含まれるかどうか）
- */

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Flex from "components/layout/Flex"
+import Flex from 'components/layout/Flex'
 
 const BreadcrumbRoot = styled(Flex)`
   list-style: none;
@@ -14,8 +14,8 @@ interface BreadcrumbProps {
 /**
  * パンくずリスト
  */
-const Breadcrumb = ({children}: BreadcrumbProps) => {
-  return <BreadcrumbRoot as='ol'>{children}</BreadcrumbRoot>
+const Breadcrumb = ({ children }: BreadcrumbProps) => {
+  return <BreadcrumbRoot as="ol">{children}</BreadcrumbRoot>
 }
 
 export default Breadcrumb

@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { ComponentMeta } from '@storybook/react'
 import React, { useEffect } from 'react'
 import Header from './index'
 import { AuthContextProvider } from 'contexts/AuthContext'
@@ -7,7 +7,7 @@ import {
   useShoppingCartContext,
 } from 'contexts/ShoppingCartContext'
 
-export default{ title: 'organisms/Header' } as ComponentMeta<typeof Header>
+export default { title: 'organisms/Header' } as ComponentMeta<typeof Header>
 
 export const NoLogin = () => <Header />
 
@@ -17,7 +17,7 @@ export const Login = () => {
     username: 'dummy',
     displayName: 'Taketo Yoshida',
     email: 'test@example.com',
-    profileImageUrl: '/images/sample/1.jpeg',
+    profileImageUrl: '/images/sample/1.jpg',
     description: '',
   }
 
@@ -30,14 +30,14 @@ export const Login = () => {
         category: 'book',
         title: 'Product',
         description: '',
-        imageUrl: 'images/sample/1.jpg',
+        imageUrl: '/images/sample/1.jpg',
         blurDataUrl: '',
         price: 1000,
         condition: 'used',
         owner: authUser,
       })
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    }, [])
 
     return <Header />
   }
@@ -45,7 +45,7 @@ export const Login = () => {
   return (
     <ShoppingCartContextProvider>
       <AuthContextProvider
-        context={{apiRootUrl: 'https://dummy'}}
+        context={{ apiRootUrl: 'https://dummy' }}
         authUser={authUser}
       >
         <ChildComponent />

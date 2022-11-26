@@ -20,7 +20,7 @@ const authUser: User = {
   username: 'dummy',
   displayName: 'Taketo Yoshida',
   email: 'test@example.com',
-  profileImageUrl: '/images/sample/1.jpg',
+  profileImageUrl: '/images/sample/1.jpeg',
   description: '',
 }
 
@@ -30,7 +30,7 @@ const product: Product = {
   category: 'book',
   title: 'Product',
   description: '',
-  imageUrl: '/images/sample/1.jpg',
+  imageUrl: '/images/sample/1.jpeg',
   blurDataUrl: '',
   price: 1000,
   condition: 'used',
@@ -42,7 +42,9 @@ describe('Header', () => {
   const useShoppingCartContextMock =
     useShoppingCartContext as jest.MockedFunction<typeof useShoppingCartContext>
 
+  // カートに商品が存在する時にバッジが表示されているか
   it('カートに商品が存在する', async () => {
+    // ShoppingCartContextの初期状態を操作し、カートに商品が1つ存在するようにする。
     useShoppingCartContextMock.mockReturnValue({
       cart: [product],
       // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -64,13 +66,11 @@ describe('Header', () => {
       </ThemeProvider>,
     )
 
-    // カートに入っている（バッジが出てる）
+    // カートに入っている(バッジが出ている)
     expect(screen.getAllByTestId('badge-wrapper').length).toBeGreaterThan(0)
-
-    renderResult.unmount()
-    useShoppingCartContextMock.mockReset()
   })
 
+  // プロファイル画像が表示されていないかつカートが空であるか
   it('未サインイン', async () => {
     useShoppingCartContextMock.mockReturnValue({
       cart: [],
@@ -91,10 +91,10 @@ describe('Header', () => {
     )
 
     // サインインしていない
-    expect(screen.queryByTestId('profile-shape-image')).toBeNull()
+    expect(screen.queryByTestId('profile-shape-image')).toBeNull() // プロファイル画像が空
 
     // カートが空
-    expect(screen.queryByTestId('badge-wrapper')).toBeNull()
+    expect(screen.queryByTestId('badge-wrapper')).toBeNull() // カートが空
 
     renderResult.unmount()
     useShoppingCartContextMock.mockReset()

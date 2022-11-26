@@ -73,7 +73,7 @@ export default ProductCardListContainer
 /**
  * 調べること
  * ・Array.from(Array(16), (_, k) => (
- * 
+ *
  * )
  * 要素が16個の配列を生成し、その配列に対しループを回す
  * kには 0 ~ 15 とインデックスが入っていく。

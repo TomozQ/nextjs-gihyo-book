@@ -6,7 +6,8 @@ describe('Button', () => {
   let handleClick: jest.Mock
 
   beforeEach(() => {
-    handleClick = jest.fn()
+    // ダミー関数
+    handleClick = jest.fn() // jest.fn() jestのモック関数
     renderResult = render(
       <Button variant="primary" onClick={handleClick}>
         Button
@@ -19,6 +20,7 @@ describe('Button', () => {
   })
 
   it('ボタンを押した時にonClickが呼ばれる', () => {
+    // ボタンが一回クリックされたかどうか確認
     fireEvent.click(screen.getByText('Button'))
     expect(handleClick).toHaveBeenCalledTimes(1)
   })

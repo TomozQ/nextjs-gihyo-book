@@ -124,3 +124,44 @@ const InputImages = (props: InputImagesProps) => {
 }
 
 export default InputImages
+
+
+/**
+ * 調べること
+ * --------------------------------
+ * ・URL.revokeObjectURL(image.src)
+ * ObjectURLとは
+ * オブジェクトにユニークなIDを付け、そのIDとURLを組み合わせた文字列
+ * この文字列はブラウザがURLとして解釈できる
+ * 
+ * FileオブジェクトをURL.createObjectURLに渡すとオブジェクトURLを取得できる
+ * const objectUrl = URL.createObjectURL(obj) -> "blob:null/f79b06de-2072-4fe4-bb2b-a89383231a79"
+ * ※ objはBlobオブジェクトを指定する（FileオブジェクトはBlobの派生なので指定可能）
+ * 
+ * Blobから作成したObjectURLは、Blob URLストアにBlobオブジェクトへの参照とペアで格納される。
+ * Blob URLストア{
+ *  Blob URL1: {ObjectURL, Blobオブジェクトへの参照}
+ *  Blob URL2: {ObjectURL, Blobオブジェクトへの参照}
+ *  ...
+ * }
+ * URLの参照行為、例えばimgタグのsrcにObjectURLがセットされると、Blob URLストアから一致するものを検索してBlobオブジェクトからデータを取得する
+ * 
+ * ObjectURLはBlobを保持する。
+ * JavaScriptは他から参照されていないオブジェクトを、ガベージコレクションのアルゴリズムに基づいて自動でメモリ上から削除する。
+ * ※ガベージコレクション
+ *  ... コンピュータプログラムの実行環境などが備える機能の一つで、実行中のプログラムが占有していたメモリ領域のうち不要になったものを自動的に解放し、
+ *      空き領域として再利用できるようにするもの。そのような処理を実行するプログラムを「ガベージコレクタ」という。
+ * File APIなどで作成されたBlobオブジェクトは、必要無くなれば削除される。
+ * しかし
+ * URL.createObjectURL()を実行すると、Blob URLストア内にBlobオブジェクトへの参照が作成され、
+ * これは自動で削除されない。（ガベージコレクタが削除してくれない）
+ * -> 使用する予定がないのに残り続ける。
+ * URL.revokeObjectURL()はこのBlobオブジェクトの参照をBlob URLストア内から削除することができる
+ * --------------------------------
+ * ・delete
+ * objectからプロパティを削除する
+ * 今回の場合は
+ * delete img.src
+ * なのでimgオブジェクトからsrcというプロパティを削除する。
+ * --------------------------------
+ */

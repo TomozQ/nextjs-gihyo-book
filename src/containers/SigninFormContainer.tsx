@@ -37,3 +37,12 @@ const SigninFormContainer = ({ onSignin }: SigninFormContainerProps) => {
 }
 
 export default SigninFormContainer
+
+/**
+ * 調べること
+ * ・instanceof 
+ * 継承している値かどうかを論理値で返す。
+ * 今回の場合は
+ * if(err instanceof Error) {}
+ * errがErrorを継承しているかどうか（コンストラクターにプロパティが含まれるかどうか）
+ */

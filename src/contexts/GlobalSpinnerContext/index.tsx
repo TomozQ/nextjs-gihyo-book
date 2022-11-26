@@ -40,3 +40,24 @@ const GlobalSpinnerContextProvider = ({
 }
 
 export default GlobalSpinnerContextProvider
+
+/**
+ * 調べること
+ * --------------------------------
+ * ・React.Dispatch
+ * type Dispatch<A> = (value: A) => void
+ * Aという型を指定。戻り値なし。
+ * --------------------------------
+ * ・React.SetStateAction<boolean>
+ * useStateを用いる際の変数変更用関数
+ * 今回の場合は
+ * const [isGlobalSpinnerOn, setGlobalSpinner] = useState(false)
+ * の'setGlobalSpinner'を指す。
+ * 変更はuseState(false)となっているようにbooleanのみなので型引数として<boolean>が渡される。
+ * --------------------------------
+ * React.Dispatch<React.SetStateAction<boolean>>
+ * 今回の場合は
+ * const [isGlobalSpinnerOn, setGlobalSpinner] = useState(false)
+ * のsetGlobalSpinneという型を指定する。
+ * ということになる。
+ */

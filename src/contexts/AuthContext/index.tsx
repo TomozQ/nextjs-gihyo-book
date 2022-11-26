@@ -71,3 +71,29 @@ export const AuthContextProvider = ({
     </AuthContext.Provider>
   )
 }
+
+/**
+ * 調べること
+ * --------------------------------
+ * ・React.PropsWithChildren
+ * propsを引数に取るコンポーネントの型
+ * 今回の場合は
+ * React.PropsWithChildren<AuthContextProvideProps>
+ * なので
+ * AuthContextProviderPropsの型のpropsを引数に取るコンポーネントという型で定義している。
+ * --------------------------------
+ * ・useSWR mutate
+ * swr -> stale-while-revalidate
+ * キャッシュをなるべく最新に保つ機能
+ * 
+ * ・シンプル
+ * ・React Hooksファースト
+ * ・非同期処理を簡単に扱えるようになる
+ * ・講師区で軽量で再利用可能なデータフェッチ
+ * ・リクエストの重複削除
+ * ・リアクティブな動作の実現
+ * ・SSR / SSGに対応
+ * 
+ * mutate() -> ローカルデータ（キャッシュされたデータ）を更新して、再検証させる。
+ * --------------------------------
+ */

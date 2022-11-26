@@ -82,7 +82,7 @@ export default CheckBox
  * --------------------------------
  * ・Omit<React.InputHTMLAttributes<HTMLInputElement>, 'defaultValue'>
  * -> Omitについて
- *  省く ... 
+ *  省く ...
  * type User = {
  *  id: number
  *  name: string
@@ -92,7 +92,7 @@ export default CheckBox
  * -> type UserWithoutAge = Omit<User, 'age'>
  * とすることでUser型からageのプロパティを省いた型を定義する。
  * <React.InputHTMLAttributes<HTMLInputElement>> -> デフォルトのHTML要素であるinputを継承してコンポーネントを生成。
- * 
+ *
  * よって
  * Omit<React.InputHTMLAttributes<HTMLInputElement>, 'defaultValue'>
  * はデフォルトのinputのattributeからdefaultValueを除いた要素でコンポーネントの型を定義している。
@@ -110,10 +110,10 @@ export default CheckBox
  * 関数内でデータを保持するにはuseStateやuseReducerがあるが、これらは状態を更新するたびに再描画が発生する。
  * refオブジェクトに保存された値を更新しても再描画は発生しない。 -> 描画に関係ないデータを保存する。
  * データは << ref.current >>から読み出したり書き換えたりする。
- * 
+ *
  * DOMの参照について
  * refをコンポーネントに渡すと、この要素がマウントされた時、ref.currentにDOMの参照がセットされ、DOMの関数などを呼び出すことができる。
- * 
+ *
  * 今回の場合はrefをCheckBoxElementに渡しているので、CheckBoxElementがマウントされたときにrefにCheckBoxElementの参照がセットされる。(実際はdisplay: none;で非表示だが)
  * そしてチェックボックスのアイコン（CheckBoxIcon / CheckBoxOutlineBlankIcon）もしくはLabelがclickされた際にチェックボックスを強制的にクリックする。
  * --------------------------------

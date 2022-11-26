@@ -243,14 +243,13 @@ Dropzone.defaultProps = {
 
 export default Dropzone
 
-
 /**
  * 調べること
  * --------------------------------
  * ・is
  * TypeScriptの型推論を補強するuser-defined type guard(ユーザー定義型ガード)
  * unknown型、any型、Union型の型の絞り込みができる。
- * 
+ *
  * 例えば
  * ... 引数の型がstring型だったら文字列の長さを出力する関数
  * const example = (foo: unknown) => {
@@ -264,7 +263,7 @@ export default Dropzone
  * const isString(bar: unknown): boolean => {
  *  return typeof bar === 'string'
  * }
- * 
+ *
  * const example = (foo: unknown) => {
  *  if(isString(foo)){
  *    console.log(foo.length)   // -> Error fooはまだunkownとして推論される。
@@ -272,13 +271,13 @@ export default Dropzone
  * }
  * となるが
  * typeofでの型の絞り込みは関数スコープで完結してしまうので、isStringがtrueの場合でも、まだfooはunknown型として推論され、型の絞り込みが行えない。
- * 
+ *
  * こんな時に is を使う
  * ... つまり
  * const isString(bar: unknown): bar is string => {   // isを使うとisStringの結果がtrueの場合は引数で受け取った変数の型は、string型であるとコンパイラに伝えることができる。
  *  return typeof bar === 'string'
  * }
- * 
+ *
  * const example = (foo: unknown) => {
  *  if(isString(foo)){
  *    console.log(foo.length)   // -> fooはまstringとして推論される。
@@ -299,7 +298,7 @@ export default Dropzone
  * --------------------------------
  * ・e.dataTransfer
  * ドラッグアンドドロップ操作中にドラッグされているデータを保持するために使用される。
- * 
+ *
  * ・e.dataTransfer.files
  * ドラッグ操作中のファイルのリスト
  * --------------------------------
@@ -311,7 +310,7 @@ export default Dropzone
  * console.log(arr3) // ['a', 'b', 'c', 'd', 'e', 'f']
  * 今回の場合は
  * const files = value.concat(
- *   getFilesFromEvent(e).filter((f) => 
+ *   getFilesFromEvent(e).filter((f) =>
  *     acceptedFileTypes.includes(f.type as FileType)
  *   )
  * )

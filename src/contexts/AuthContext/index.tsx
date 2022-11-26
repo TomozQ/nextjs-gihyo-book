@@ -85,7 +85,7 @@ export const AuthContextProvider = ({
  * ・useSWR mutate
  * swr -> stale-while-revalidate
  * キャッシュをなるべく最新に保つ機能
- * 
+ *
  * ・シンプル
  * ・React Hooksファースト
  * ・非同期処理を簡単に扱えるようになる
@@ -93,7 +93,7 @@ export const AuthContextProvider = ({
  * ・リクエストの重複削除
  * ・リアクティブな動作の実現
  * ・SSR / SSGに対応
- * 
+ *
  * mutate() -> ローカルデータ（キャッシュされたデータ）を更新して、再検証させる。
  * --------------------------------
  */

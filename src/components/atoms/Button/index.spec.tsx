@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, RenderResult } from '@testing-library/react'
+import {render, screen, fireEvent, RenderResult} from '@testing-library/react'
 import Button from '.'
 
 describe('Button', () => {
@@ -6,9 +6,10 @@ describe('Button', () => {
   let handleClick: jest.Mock
 
   beforeEach(() => {
-    handleClick = jest.fn()
+    // ダミー関数
+    handleClick = jest.fn()   // jest.fn() jestのモック関数
     renderResult = render(
-      <Button variant="primary" onClick={handleClick}>
+      <Button variant='primary' onClick={handleClick}>
         Button
       </Button>,
     )
@@ -19,6 +20,7 @@ describe('Button', () => {
   })
 
   it('ボタンを押した時にonClickが呼ばれる', () => {
+    // ボタンが一回クリックされたかどうか確認
     fireEvent.click(screen.getByText('Button'))
     expect(handleClick).toHaveBeenCalledTimes(1)
   })

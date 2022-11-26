@@ -32,12 +32,12 @@ describe('Dropdown', () => {
     await act(async () => {
       // クリックして、ドロップダウンの選択肢のビューを表示
       const element = await screen.findByTestId('dropdown-control')
-      element && fireEvent.mouseDown(element)
+      element && fireEvent.mouseDown(element) // オプションのプルダウンを開く
     })
 
     // ドロップダウンの選択肢のビューから選択
     const elements = await screen.getAllByTestId('dropdown-option')
-    elements && fireEvent.click(elements[0])
+    elements && fireEvent.click(elements[0])    // 最初のオプションをクリック
 
     expect(handleChange).toHaveBeenCalledTimes(1)
   })

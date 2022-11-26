@@ -235,7 +235,7 @@ export default Dropdown
  * ・?? の演算子
  *  Null合体演算子
  *  左辺がnullまたはundefinedの場合に右の値を返し、それ以外の場合に左の値を返す
- *  value={selectedItem?.value ?? ''} 
+ *  value={selectedItem?.value ?? ''}
  *  -> selectedItem.valueがあればselectedItem.valueを返し、selectedItem.valueがnullもしくはundefinedの場合には''を返す
  * --------------------------------
  * ・React.SyntheticEvent
@@ -245,7 +245,7 @@ export default Dropdown
  *  そのため、ネイティブのJSでイベントをクロスブラウザ対応させるのは大変
  *  Reactの場合、すべてのイベントをSyntheticEventとして扱う。
  *  SyntheticEventを使えば、各ブラウザのネイティブイベントを全てラップしており、何も意識しなくてもクロスブラウザ対応ができる。
- *  
+ *
  *  つまりいつもeventとして渡している(e)の種類。合成イベント。
  * --------------------------------
  * ・e.stopPropagation()

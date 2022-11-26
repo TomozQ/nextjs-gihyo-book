@@ -125,7 +125,6 @@ const InputImages = (props: InputImagesProps) => {
 
 export default InputImages
 
-
 /**
  * 調べること
  * --------------------------------
@@ -133,11 +132,11 @@ export default InputImages
  * ObjectURLとは
  * オブジェクトにユニークなIDを付け、そのIDとURLを組み合わせた文字列
  * この文字列はブラウザがURLとして解釈できる
- * 
+ *
  * FileオブジェクトをURL.createObjectURLに渡すとオブジェクトURLを取得できる
  * const objectUrl = URL.createObjectURL(obj) -> "blob:null/f79b06de-2072-4fe4-bb2b-a89383231a79"
  * ※ objはBlobオブジェクトを指定する（FileオブジェクトはBlobの派生なので指定可能）
- * 
+ *
  * Blobから作成したObjectURLは、Blob URLストアにBlobオブジェクトへの参照とペアで格納される。
  * Blob URLストア{
  *  Blob URL1: {ObjectURL, Blobオブジェクトへの参照}
@@ -145,7 +144,7 @@ export default InputImages
  *  ...
  * }
  * URLの参照行為、例えばimgタグのsrcにObjectURLがセットされると、Blob URLストアから一致するものを検索してBlobオブジェクトからデータを取得する
- * 
+ *
  * ObjectURLはBlobを保持する。
  * JavaScriptは他から参照されていないオブジェクトを、ガベージコレクションのアルゴリズムに基づいて自動でメモリ上から削除する。
  * ※ガベージコレクション

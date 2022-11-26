@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import useSWR from "swr";
-import signin from "services/auth/signin";
-import signout from "services/auth/signout";
-import type { ApiContext, User } from "types";
+import React, { useContext } from 'react'
+import useSWR from 'swr'
+import signin from 'services/auth/signin'
+import signout from 'services/auth/signout'
+import type { ApiContext, User } from 'types'
 
 type AuthContextType = {
   authUser?: User
@@ -15,7 +15,7 @@ type AuthContextType = {
   ) => Promise<User | undefined>
 }
 
-type AuthContextProvideProps = {
+type AuthContextProviderProps = {
   context: ApiContext
   authUser?: User
 }
@@ -28,7 +28,8 @@ const AuthContext = React.createContext<AuthContextType>({
   mutate: async () => Promise.resolve(undefined),
 })
 
-export const useAuthContext = (): AuthContextType => useContext<AuthContextType>(AuthContext)
+export const useAuthContext = (): AuthContextType =>
+  useContext<AuthContextType>(AuthContext)
 
 /**
  * 認証コンテキストプロバイダー
@@ -38,21 +39,20 @@ export const AuthContextProvider = ({
   context,
   authUser,
   children,
-}: React.PropsWithChildren<AuthContextProvideProps>) => {
+}: React.PropsWithChildren<AuthContextProviderProps>) => {
   const { data, error, mutate } = useSWR<User>(
     `${context.apiRootUrl.replace(/\/$/g, '')}/users/me`,
   )
-  
   const isLoading = !data && !error
 
   // サインイン
   const signinInternal = async (username: string, password: string) => {
-    await signin(context, {username, password})
+    await signin(context, { username, password })
     await mutate()
   }
 
   // サインアウト
-  const signoutInternal = async() => {
+  const signoutInternal = async () => {
     await signout(context)
     await mutate()
   }

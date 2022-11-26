@@ -1,11 +1,11 @@
-import ShapeImage from "components/atoms/ShapeImage";
-import Text from "components/atoms/Text";
-import Box from "components/layout/Box";
-import Flex from "components/layout/Flex";
+import ShapeImage from 'components/atoms/ShapeImage'
+import Text from 'components/atoms/Text'
+import Box from 'components/layout/Box'
+import Flex from 'components/layout/Flex'
 
 interface UserProfileProps {
   /**
-   * バリアント(表示スタイル)
+   * バリアント（表示スタイル）
    */
   variant?: 'normal' | 'small'
   /**
@@ -36,11 +36,11 @@ const UserProfile = ({
   numberOfProducts,
   description,
 }: UserProfileProps) => {
-  const profileImageSize = variant === 'small' ? 100 : 120
+  const profileImageSize = variant === 'small' ? '100px' : '120px'
 
   return (
     <Flex>
-      <Box minWidth={String(profileImageSize)}>
+      <Box minWidth={profileImageSize}>
         {/* ユーザー画像 */}
         <ShapeImage
           shape="circle"
@@ -53,28 +53,28 @@ const UserProfile = ({
       </Box>
       <Box padding={1}>
         <Flex
-          height='100%'
-          flexDirection='column'
-          justifyContent='space-between'
+          height="100%"
+          flexDirection="column"
+          justifyContent="space-between"
         >
           <Box>
             {/* ユーザー名 */}
             <Text
-              as='p'
-              fontWeight='bold'
-              variant='mediumLarge'
+              as="p"
+              fontWeight="bold"
+              variant="mediumLarge"
               marginTop={0}
               marginBottom={1}
             >
               {username}
             </Text>
-            {/* 商品出品数 */}
-            <Text marginBottom={1} marginTop={0} as='p'>
+            {/* 商品出店数 */}
+            <Text marginBottom={1} marginTop={0} as="p">
               {numberOfProducts}点出品済
             </Text>
             {/* ユーザー概要 */}
             {variant === 'normal' && (
-              <Text margin={0} as='p'>
+              <Text margin={0} as="p">
                 {description}
               </Text>
             )}

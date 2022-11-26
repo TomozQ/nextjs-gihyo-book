@@ -1,15 +1,17 @@
-import { ComponentMeta } from "@storybook/react";
-import React, { useState } from "react";
+import { ComponentMeta } from '@storybook/react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import InputImages, { FileData } from './index'
+import InputImages, { FileData } from './'
 
-export default { title: 'Molecules/InputImages' } as ComponentMeta<typeof InputImages>
+export default { title: 'Molecules/InputImages' } as ComponentMeta<
+  typeof InputImages
+>
 
 const Container = styled.div`
   width: 288px;
   display: grid;
   gap: 10px;
-  grid-tamplate-column: 1fr;
+  grid-template-columns: 1fr;
 `
 
 export const Standard = () => {
@@ -23,5 +25,5 @@ export const Standard = () => {
     <Container>
       <InputImages images={images} onChange={handleChange} maximumNumber={2} />
     </Container>
-  ) 
+  )
 }

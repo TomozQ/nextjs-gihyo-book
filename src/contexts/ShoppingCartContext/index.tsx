@@ -1,6 +1,6 @@
-import React, { useReducer, useContext, createContext } from "react";
+import React, { useReducer, useContext } from 'react'
 import { shopReducer, ADD_PRODUCT, REMOVE_PRODUCT } from './reducers'
-import type { Product } from "types";
+import type { Product } from 'types'
 
 type ShoppingCartContextType = {
   cart: Product[]
@@ -8,14 +8,16 @@ type ShoppingCartContextType = {
   removeProductFromCart: (productId: number) => void
 }
 
-const ShoppingCartContext = createContext<ShoppingCartContextType>({
+const ShoppingCartContext = React.createContext<ShoppingCartContextType>({
   cart: [],
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   addProductToCart: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   removeProductFromCart: () => {},
 })
 
-export const useShoppingCartContext = (): ShoppingCartContextType => useContext<ShoppingCartContextType>(ShoppingCartContext)
+export const useShoppingCartContext = (): ShoppingCartContextType =>
+  useContext<ShoppingCartContextType>(ShoppingCartContext)
 
 interface ShoppingCartContextProviderProps {
   children?: React.ReactNode
@@ -24,18 +26,20 @@ interface ShoppingCartContextProviderProps {
 /**
  * ショッピングカートコンテキストプロバイダー
  */
-export const ShoppingCartContextProvider = ({ children }: ShoppingCartContextProviderProps) => {
+export const ShoppingCartContextProvider = ({
+  children,
+}: ShoppingCartContextProviderProps) => {
   const products: Product[] = []
   const [cartState, dispatch] = useReducer(shopReducer, products)
 
   // 商品をカートに追加
   const addProductToCart = (product: Product) => {
-    dispatch({type: ADD_PRODUCT, payload: product})
+    dispatch({ type: ADD_PRODUCT, payload: product })
   }
 
   // 商品をカートから削除
   const removeProductFromCart = (productId: number) => {
-    dispatch({type: REMOVE_PRODUCT, payload: productId})
+    dispatch({ type: REMOVE_PRODUCT, payload: productId })
   }
 
   return (
@@ -46,7 +50,7 @@ export const ShoppingCartContextProvider = ({ children }: ShoppingCartContextPro
         removeProductFromCart,
       }}
     >
-      { children }
+      {children}
     </ShoppingCartContext.Provider>
   )
 }

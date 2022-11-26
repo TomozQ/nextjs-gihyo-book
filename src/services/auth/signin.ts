@@ -1,26 +1,26 @@
-// typesは後程定義
+// typesは後ほど定義
 import { ApiContext, User } from 'types'
-// src/utils/index.tsからimport
+// 先ほど定義したsrc/utils/index.tsから読み込み
 import { fetcher } from 'utils'
 
 export type SigninParams = {
   /**
-   *  ユーザー名
-   *  サンプルユーザーのユーザー名は"user"
+   * ユーザー名
+   * サンプルユーザーのユーザー名は "user"
    */
   username: string
   /**
-   *  パスワード
-   *  サンプルユーザーのパスワードは"password"
+   * パスワード
+   * サンプルユーザーのパスワードは "password"
    */
   password: string
 }
 
 /**
- *  認証API(サインイン)
- *  @param context APIコンテキスト
- *  @param params パラメータ
- *  @returns ログインユーザー
+ * 認証API（サインイン）
+ * @param context APIコンテキスト
+ * @param params パラメータ
+ * @returns ログインユーザー
  */
 const signin = async (
   context: ApiContext,

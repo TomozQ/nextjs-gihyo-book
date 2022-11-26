@@ -51,4 +51,4 @@ const Template: ComponentStory<typeof ScaleImage> = (args) => (
 )
 
 export const Normal = Template.bind({})
-Normal.args = { src: '/images/sample/1.jpeg' }
+Normal.args = { src: '/images/sample/1.jpg' }

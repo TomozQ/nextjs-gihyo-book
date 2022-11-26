@@ -1,4 +1,4 @@
-import Grid from "components/layout/Grid";
+import Grid from 'components/layout/Grid'
 
 interface ProductCardListProps {
   /**
@@ -21,13 +21,13 @@ const ProductCardList = ({
 }: React.PropsWithChildren<ProductCardListProps>) => {
   return (
     <Grid
-      gridGap='16px'
+      gridGap="16px"
       gridTemplateColumns={{
         base: `repeat(${numberPerRowForMobile}, 1fr)`,
         md: `repeat(${numberPerRow}, 1fr)`,
       }}
     >
-      { children }
+      {children}
     </Grid>
   )
 }

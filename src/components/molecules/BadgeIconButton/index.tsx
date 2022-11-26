@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Badge from 'components/atoms/Badge'
 
-const BadgeIconButtonWrapper = styled.span<{size: number | string}>`
+const BadgeIconButtonWrapper = styled.span<{ size: number | string }>`
   position: relative;
   display: flex;
   align-items: center;
@@ -27,16 +27,16 @@ type BadgeIconButton = {
  */
 const BadgeIconButton = ({
   icon,
-  size='24px',
+  size = '24px',
   badgeContent,
   badgeBackgroundColor,
 }: BadgeIconButton) => {
   return (
-    <BadgeIconButtonWrapper size='24px'>
+    <BadgeIconButtonWrapper size={size}>
       {icon}
       {badgeContent && (
-        <BadgeWrapper data-testid='badge-wrapper'>
-          <Badge 
+        <BadgeWrapper data-testid="badge-wrapper">
+          <Badge
             content={`${badgeContent}`}
             backgroundColor={badgeBackgroundColor}
           />
@@ -47,9 +47,3 @@ const BadgeIconButton = ({
 }
 
 export default BadgeIconButton
-
-/**
- * 調べること
- * ・React.ReactNode
- * type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
- */

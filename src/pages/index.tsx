@@ -17,7 +17,7 @@ const HomePage: NextPage<HomePageProps> = ({
   clothesProducts,
   shoesProducts,
 }: HomePageProps) => {
-  logger.info('HomePageコンポーネントの描画で呼ばれたログ')
+  logger.info('HomePageコンポーネントの描画で呼ばれたログ.')
   // 商品カードカルーセルをレンダリング
   const renderProductCardCarousel = (products: Product[]) => {
     return (

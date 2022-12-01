@@ -10,7 +10,11 @@
     "format": "next lint --fix --dir src",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest"
+    "test": "jest",
+    "storyshots": "jest --config ./jest.config.storyshots.js"
+  },
+  "resolutions": {
+    "react-test-renderer": "18.1.0"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -37,6 +41,7 @@
     "@storybook/addon-interactions": "^6.5.9",
     "@storybook/addon-links": "^6.5.9",
     "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/addon-storyshots": "^6.5.13",
     "@storybook/react": "^6.5.9",
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/jest-dom": "^5.16.4",
@@ -56,6 +61,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3",
     "prettier": "^2.6.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "4.6.2",
